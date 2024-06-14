@@ -35,9 +35,6 @@ public class CuentaServiceTest {
     @Mock
     private CuentaDao cuentaDao;
 
-    // @Mock
-    // private Cliente cliente;
-
     @Mock
     private ClienteService clienteService;
 
@@ -64,12 +61,11 @@ public class CuentaServiceTest {
                 () -> cuentaService.darDeAltaCuenta(cuentaExistente, dniTitular));
     }
 
-    // modifique un poco el codigo para agregar un nuevo tipocuenta, pero ahora no
-    // puedo hacer el testeo
     @Test
     public void testTipoCuentaNoSoportada() {
         Cuenta cuenta = new Cuenta();
-        cuenta.setTipoCuenta(null); // Establece el tipo de cuenta como null para simular un tipo no soportado
+        cuenta.setTipoCuenta(TipoCuenta.CUENTA_CORRIENTE);
+        cuenta.setMoneda(TipoMoneda.DOLARES);
 
         doReturn(null).when(cuentaDao).find(anyLong());
 
@@ -80,6 +76,7 @@ public class CuentaServiceTest {
 
     @Test
     public void testClienteYaTieneCuentaDeEseTipo() throws CuentaAlreadyExistsException, TipoCuentaAlreadyExistsException, TipoCuentaNoSoportadaException {
+
         Cuenta cuenta = new Cuenta();
         cuenta.setTipoCuenta(TipoCuenta.CUENTA_CORRIENTE);
         cuenta.setMoneda(TipoMoneda.PESOS);

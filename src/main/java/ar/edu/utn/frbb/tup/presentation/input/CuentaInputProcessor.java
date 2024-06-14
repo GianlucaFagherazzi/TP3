@@ -66,7 +66,7 @@ public class CuentaInputProcessor extends BaseInputProcessor{
             System.out.println("Error: " + e.getMessage());
             return;
         } catch (CuentaAlreadyExistsException e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException(e);           
         } catch (TipoCuentaNoSoportadaException e){
             throw new RuntimeException(e);
         } catch (Exception e) {
